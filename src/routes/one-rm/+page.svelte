@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { calculateOneRM } from '$lib';
 	let weight = 190;
 	let reps = 3;
 	let rpe = 8.5;
 
-	$: brzyck = weight * (36 / (37 - reps) - (10 - rpe));
-	$: epley = weight * (1 + (reps + (10 - rpe)));
-	$: lander = (100 * weight) / (101.3 - 2.67123 * (reps + (10 - rpe)));
+	$: brzyck = calculateOneRM({ weight, reps, rpe }, 'brzyck');
+	$: epley = calculateOneRM({ weight, reps, rpe }, 'epley');
+	$: lander = calculateOneRM({ weight, reps, rpe }, 'lander');
 </script>
 
 <form method="POST">
@@ -32,7 +33,7 @@
 	<input disabled bind:value={epley} />
 </label>
 <label
-	>lander
+	>Lander
 	<input disabled bind:value={lander} />
 </label>
 
@@ -46,7 +47,7 @@
 		flex-direction: column;
 		max-width: fit-content;
 	}
-    button {
-      max-width: fit-content;
-    }
+	button {
+		max-width: fit-content;
+	}
 </style>

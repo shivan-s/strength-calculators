@@ -1,3 +1,3 @@
-import { calculateOneRM } from './calculators';
+import { calculateOneRM, calculateTargetWeight } from './calculators';
 
-export { calculateOneRM };
+export { calculateOneRM, calculateTargetWeight };

@@ -1,27 +1,60 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Navbar from '$lib/components/navbar.svelte';
 	const pageTitle = $page.data['pageTitle'];
 </script>
 
 <svelte:head>
-	<title>{pageTitle ? 'hjpmethod - ${pageTitle}' : 'hjpmethod'}</title>
+	<title>{pageTitle ? `hjpmethod - ${pageTitle}` : 'hjpmethod'}</title>
 </svelte:head>
 
-<nav>
-	<ul>
-		<li><a href="/one-rm">1-RM Calculator</a></li>
-		<li><a href="/rpe-weight">RPE Weight Predictor</a></li>
-	</ul>
-</nav>
+<header>
+	<Navbar />
+</header>
+<main>
+	{#if pageTitle}
+		<h2>{pageTitle}</h2>
+	{/if}
 
-{#if pageTitle}
-	<h1>{pageTitle}</h1>
-{/if}
+	<slot />
+</main>
 
-<slot />
+<footer>
+	<p><a href="https://www.hjpmethod.co.nz">Hayden Prichard</a> © 2023</p>
+</footer>
 
 <style>
-	nav {
-		border-bottom: 1px black solid;
+	:global(:root) {
+		--primary-color: black;
+		--secondary-color: #ca2017;
+	}
+	:global(*) {
+		padding: 0;
+		margin: 0;
+	}
+	:global(body) {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+	header {
+		padding-bottom: 2rem;
+		border-bottom: 1px grey solid;
+	}
+	footer {
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-top: 1px grey solid;
+	}
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding: 2rem;
+		flex-grow: 1;
+		height: 100%;
 	}
 </style>

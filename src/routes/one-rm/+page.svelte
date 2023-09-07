@@ -20,22 +20,24 @@
 	</label>
 	<label>
 		RPE
-		<input type="number" name="rpe" bind:value={rpe} />
+		<input type="number" name="rpe" bind:value={rpe} min={0.5} max={10} step={0.5} />
 	</label>
 	<button type="submit">Submit</button>
 </form>
-<label
-	>Brzyck
-	<input disabled bind:value={brzyck} />
-</label>
-<label
-	>Epley
-	<input disabled bind:value={epley} />
-</label>
-<label
-	>Lander
-	<input disabled bind:value={lander} />
-</label>
+<div>
+	<label
+		>Brzyck
+		<input disabled bind:value={brzyck} />
+	</label>
+	<label
+		>Epley
+		<input disabled bind:value={epley} />
+	</label>
+	<label
+		>Lander
+		<input disabled bind:value={lander} />
+	</label>
+</div>
 
 <style>
 	form {
@@ -48,6 +50,10 @@
 		max-width: fit-content;
 	}
 	button {
+		margin-top: 0.5rem;
 		max-width: fit-content;
+	}
+	input {
+		padding: 0.5rem 0.25rem 0.5rem 0.25rem;
 	}
 </style>

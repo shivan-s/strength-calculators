@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Navbar from '$lib/components/navbar.svelte';
-	const pageTitle = $page.data['pageTitle'];
+	$: pageTitle = $page.data['pageTitle'];
 </script>
 
 <svelte:head>
@@ -56,5 +56,23 @@
 		padding: 2rem;
 		flex-grow: 1;
 		height: 100%;
+	}
+	:global(form) {
+		display: flex;
+		flex-direction: column;
+	}
+	:global(label) {
+		display: flex;
+		flex-direction: column;
+		max-width: fit-content;
+		text-align: center;
+	}
+	:global(button) {
+		margin-top: 0.5rem;
+		max-width: fit-content;
+	}
+	:global(input) {
+		text-align: center;
+		padding: 0.75rem 0.5rem 0.75rem 0.5rem;
 	}
 </style>

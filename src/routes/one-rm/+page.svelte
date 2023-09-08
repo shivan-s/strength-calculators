@@ -1,5 +1,4 @@
-<script lang="ts">
-	import { calculateOneRM } from '$lib';
+<script lang="ts"> import { calculateOneRM } from '$lib';
 	let weight = 190;
 	let reps = 3;
 	let rpe = 8.5;
@@ -40,20 +39,4 @@
 </div>
 
 <style>
-	form {
-		display: flex;
-		flex-direction: column;
-	}
-	label {
-		display: flex;
-		flex-direction: column;
-		max-width: fit-content;
-	}
-	button {
-		margin-top: 0.5rem;
-		max-width: fit-content;
-	}
-	input {
-		padding: 0.5rem 0.25rem 0.5rem 0.25rem;
-	}
 </style>

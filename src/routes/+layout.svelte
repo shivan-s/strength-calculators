@@ -72,6 +72,7 @@
 		max-width: fit-content;
 	}
 	:global(input) {
+		font-size: 1.5rem;
 		text-align: center;
 		padding: 0.75rem 0.5rem 0.75rem 0.5rem;
 	}

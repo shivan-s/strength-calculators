@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const actions = {
@@ -6,6 +7,16 @@ export const actions = {
     const weight = formData.get('weight');
     const reps = formData.get('reps');
     const rpe = formData.get('rpe');
+
+    if (typeof weight !== 'string') {
+      throw error(400, 'Bad data in form');
+    }
+    if (typeof reps !== 'string') {
+      throw error(400, 'Bad data in form');
+    }
+    if (typeof rpe !== 'string') {
+      throw error(400, 'Bad data in form');
+    }
     return { success: true, weight, reps, rpe };
   }
 } satisfies Actions;

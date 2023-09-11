@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { calculateOneRM } from '$lib';
-	let weight = 190;
-	let reps = 3;
-	let rpe = 8.5;
+	import type { ActionData } from './$types';
+
+	export let form: ActionData;
+	let weight = parseFloat(form?.weight) ?? 190;
+	let reps = parseFloat(form?.reps) ?? 3;
+	let rpe = parseFloat(form?.reps) ?? 8.5;
 
 	$: brzyck = calculateOneRM({ weight, reps, rpe }, 'brzyck');
 	$: epley = calculateOneRM({ weight, reps, rpe }, 'epley');

@@ -12,63 +12,55 @@
 	];
 </script>
 
-<div>
-	<h1><a href="/">HJP Method</a></h1>
-	<h3>Strength & Conditioning</h3>
-	<nav>
-		<ul>
-			{#each links as { name, uri }}
-				<li>
-					<a
-						class={uri === $page.url.pathname ? 'active' : ''}
-						href={uri}
-						aria-current={uri === $page.url.pathname}>{name}</a
+<header>
+	<div class="navbar bg-base-100">
+		<div class="navbar-start">
+			<div class="dropdown">
+				<label tabindex="0" class="btn btn-ghost lg:hidden">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-5 w-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						><path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h8m-8 6h16"
+						/></svg
 					>
-				</li>
-			{/each}
-		</ul>
-	</nav>
-</div>
-
-<style>
-	h1 a {
-		color: var(--primary-color);
-		text-decoration-line: none;
-	}
-	h1 a:hover {
-		color: var(--secondary-color);
-		transition-timing-function: ease;
-		transition: 300ms;
-	}
-	div {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	nav ul {
-		display: flex;
-		justify-content: space-around;
-	}
-	nav ul li {
-		padding: 0.75rem 0.75rem 0.5rem 0.5rem;
-		display: inline-block;
-		list-style: none;
-	}
-	nav ul li a {
-		padding: 0.5rem 0.5rem 0.25rem 0.25rem;
-		border-radius: 0.25rem;
-		text-decoration-line: none;
-		text-transform: uppercase;
-		color: var(--primary-color);
-	}
-	nav ul li a:hover {
-		color: white;
-		background: var(--secondary-color);
-		transition-timing-function: ease;
-		transition: 300ms;
-	}
-	nav ul li a.active {
-		color: white;
-		background: var(--secondary-color);
-	}
-</style>
+				</label>
+				<ul
+					tabindex="0"
+					class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+				>
+					{#each links as { uri, name }}
+						<li>
+							<a
+								class:active={uri === $page.url.pathname}
+								href={uri}
+								aria-current={uri === $page.url.pathname}>{name}</a
+							>
+						</li>
+					{/each}
+				</ul>
+			</div>
+			<a href="/" class="btn btn-ghost normal-case text-xl">Strength Calculators</a>
+		</div>
+		<div class="navbar-center hidden lg:flex">
+			<ul class="menu menu-horizontal px-1">
+				{#each links as { uri, name }}
+					<li>
+						<a
+							class:active={uri === $page.url.pathname}
+							href={uri}
+							aria-current={uri === $page.url.pathname}>{name}</a
+						>
+					</li>
+				{/each}
+			</ul>
+		</div>
+		<div class="navbar-end" />
+	</div>
+</header>

@@ -11,9 +11,9 @@
 </svelte:head>
 
 <Navbar />
-<main class="container flex-grow">
+<main class="container flex-grow mt-6 prose">
 	{#if pageTitle}
-		<h2>{pageTitle}</h2>
+		<h2 class="text-center">{pageTitle}</h2>
 	{/if}
 
 	<slot />

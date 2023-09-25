@@ -1,83 +1,56 @@
 <script lang="ts">
 	import { calculateOneRM } from '$lib';
+	import RpeSelect from '$lib/components/RpeSelect.svelte';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
-	let weight = parseFloat(form?.weight) ?? 190;
-	let reps = parseFloat(form?.reps) ?? 3;
-	let rpe = parseFloat(form?.reps) ?? 8.5;
+	let weight = form?.weight ? parseFloat(form.weight) : 190;
+	let reps = form?.reps ? parseFloat(form?.reps) : 3;
+	let rpe = form?.rpe ? parseFloat(form?.rpe) : 10;
 
 	$: brzyck = calculateOneRM({ weight, reps, rpe }, 'brzyck');
 	$: epley = calculateOneRM({ weight, reps, rpe }, 'epley');
 	$: lander = calculateOneRM({ weight, reps, rpe }, 'lander');
 </script>
 
-<form method="POST">
-	<label>
-		Weight Used
-		<input type="number" name="weight" bind:value={weight} />
-	</label>
-	<label>
-		Reps Made
-		<input type="number" name="reps" bind:value={reps} />
-	</label>
-	<label>
-		RPE
-		<div class="rpe">
-			<input
-				type="range"
-				name="rpe"
-				bind:value={rpe}
-				list="markers"
-				min={0.5}
-				max={10}
-				step={0.5}
-			/>
-			<datalist id="markers">
-				<option>0.5</option>
-				<option>1</option>
-				<option>1.5</option>
-				<option>2</option>
-				<option>2.5</option>
-				<option>3</option>
-				<option>3.5</option>
-				<option>4</option>
-				<option>4.5</option>
-				<option>5</option>
-				<option>5.5</option>
-				<option>6</option>
-				<option>6.5</option>
-				<option>7</option>
-				<option>7.5</option>
-				<option>8</option>
-				<option>8.5</option>
-				<option>9</option>
-				<option>9.5</option>
-				<option>10</option>
-			</datalist>
-			<input disabled bind:value={rpe} />
-		</div>
-	</label>
-
-	<button type="submit">Submit</button>
+<form class="flex flex-col gap-4 items-center" method="POST">
+	<div class="form-control">
+		<label for="weight" class="label">
+			<span class="label-text">Weight Used</span>
+		</label>
+		<input
+			class="input input-bordered w-full max-w-xs"
+			type="number"
+			name="weight"
+			bind:value={weight}
+		/>
+		<label for="reps" class="label">
+			<span class="label-text">Reps Made</span>
+		</label>
+		<input
+			class="input input-bordered w-full max-w-xs"
+			type="number"
+			name="reps"
+			bind:value={reps}
+		/>
+		<label for="rpeSelect" class="label"> <span class="label-text">RPE</span></label>
+		<input name="rpe" hidden aria-hidden type="number" bind:value={rpe} />
+		<RpeSelect name="rpeSelect" bind:value={rpe} />
+	</div>
+	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
 </form>
-<div>
-	<label
-		>Brzyck
-		<input disabled bind:value={brzyck} />
-	</label>
-	<label
-		>Epley
-		<input disabled bind:value={epley} />
-	</label>
-	<label
-		>Lander
-		<input disabled bind:value={lander} />
-	</label>
+<div class="divider" />
+<div class="stats shadow w-full justify-between">
+	<div class="stat">
+		<div class="stat-title">Brzyck</div>
+		<div class="stat-value">{brzyck}</div>
+	</div>
+	<div class="stat">
+		<div class="stat-title">Epley</div>
+		<div class="stat-value">{epley}</div>
+	</div>
+	<div class="stat">
+		<div class="stat-title">Lander</div>
+		<div class="stat-value">{lander}</div>
+	</div>
 </div>
-
-<style>
-	.rpe {
-		display: flex;
-	}
-</style>

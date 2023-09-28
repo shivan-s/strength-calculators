@@ -8,8 +8,8 @@ export function calculateOneRM(params: OneRMParams, rmType: 'brzyck' | 'epley' |
 	let oneRM: number;
 	switch (rmType) {
 		case 'brzyck':
-      oneRM = brzyck(params);
-    break;
+			oneRM = brzyck(params);
+			break;
 		case 'epley':
 			oneRM = epley(params);
 			break;

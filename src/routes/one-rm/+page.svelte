@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { calculateOneRM } from '$lib';
+	import { enhance } from '$app/forms';
 	import RpeSelect from '$lib/components/RpeSelect.svelte';
 	import type { ActionData } from './$types';
 
@@ -13,7 +14,7 @@
 	$: lander = calculateOneRM({ weight, reps, rpe }, 'lander');
 </script>
 
-<form class="flex flex-col gap-4 items-center" method="POST">
+<form class="flex flex-col gap-4 items-center" method="POST" use:enhance>
 	<div class="form-control">
 		<label for="weight" class="label">
 			<span class="label-text">Weight Used</span>
@@ -35,7 +36,7 @@
 		/>
 		<label for="rpeSelect" class="label"> <span class="label-text">RPE</span></label>
 		<input name="rpe" hidden aria-hidden type="number" bind:value={rpe} />
-		<RpeSelect name="rpeSelect" bind:value={rpe} />
+		<RpeSelect bind:rpe name="rpeSelect" />
 	</div>
 	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
 </form>

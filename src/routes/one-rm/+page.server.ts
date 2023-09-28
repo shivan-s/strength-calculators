@@ -17,7 +17,7 @@ export const actions = {
 		if (typeof rpe !== 'string') {
 			throw error(400, 'Bad data in form');
 		}
-		return { success: true, weight, reps, rpe };
+		return { weight, reps, rpe };
 	}
 } satisfies Actions;
 

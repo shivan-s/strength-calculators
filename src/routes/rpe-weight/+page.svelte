@@ -15,7 +15,7 @@
 			<span class="label-text">One Rep Max</span>
 		</label>
 		<input
-			class="input input-bordered w-full max-w-xs"
+			class="input input-bordered w-full max-w-sx"
 			type="number"
 			name="oneRm"
 			bind:value={oneRM}
@@ -31,13 +31,13 @@
 		/>
 		<label for="targetRPESelect" class="label"><span class="label-text">Target RPE</span></label>
 		<input name="targetRPE" hidden aria-hidden type="number" bind:value={targetRPE} />
-		<RpeSelect name="targetRPESelect" bind:value={targetRPE} />
+		<RpeSelect bind:rpe={targetRPE} name="targetRPESelect" />
 	</div>
 	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
 </form>
 <div class="divider" />
-<div class="stats shadow w-full justify-between">
-	<div class="stat">
+<div class="flex w-full justify-center">
+	<div class="stat shadow rounded-md w-fit">
 		<div class="stat-title">Target Weight</div>
 		<div class="stat-value">{targetWeight}</div>
 	</div>

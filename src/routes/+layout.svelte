@@ -15,7 +15,6 @@
 	{#if pageTitle}
 		<h2 class="text-center">{pageTitle}</h2>
 	{/if}
-
 	<slot />
 </main>
 <Footer />

@@ -22,7 +22,7 @@ jobs:
 
       - name: Prettier
         run: |
-          npm run ci
+          npm ci
           npm run format:check
 
   lint:
@@ -41,7 +41,7 @@ jobs:
 
       - name: ESLint
         run: |
-          npm run ci
+          npm ci
           npm run lint
 
   svelte-check:
@@ -60,5 +60,5 @@ jobs:
 
       - name: Check
         run: |
-          npm run ci
+          npm ci
           npm run check

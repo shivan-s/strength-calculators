@@ -22,7 +22,7 @@ jobs:
 
       - name: Tests
         run: |
-          npm run ci
+          npm ci
           npm run test:unit
 
   integration-tests:
@@ -41,5 +41,5 @@ jobs:
 
       - name: Tests
         run: |
-          npm run ci
+          npm ci
           npm run test:integration

@@ -10,7 +10,7 @@
 <!-- <a href="https://www.npmjs.com/package/zod" rel="nofollow"><img src="https://img.shields.io/github/stars/colinhacks/zod" alt="stars"></a> -->
 <!-- <a href="https://discord.gg/KaSRdyX2vc" rel="nofollow"><img src="https://img.shields.io/discord/893487829802418277?label=Discord&logo=discord&logoColor=white" alt="discord server"></a> -->
 </div>
-
+s
 <!-- <div align="center"> -->
 <!--   <a href="https://zod.dev">Documentation</a> -->
 <!--   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span> -->
@@ -30,5 +30,6 @@
 
 <br/>
 <br/>
-
+[![Lint](https://github.com/shivan-s/strength-calculators/actions/workflows/lint.yml/badge.svg)](https://github.com/shivan-s/strength-calculators/actions/workflows/lint.yml)
+[![Tests](https://github.com/shivan-s/strength-calculators/actions/workflows/tests.yml/badge.svg)](https://github.com/shivan-s/strength-calculators/actions/workflows/tests.yml)
 ## Work in Progress

@@ -1,4 +1,4 @@
-import type { OneRMParams } from "./types";
+import type { OneRMParams } from './types';
 
 export function brzyck(params: OneRMParams): number {
 	const { weight, reps, rpe } = params;

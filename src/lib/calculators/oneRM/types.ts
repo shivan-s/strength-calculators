@@ -3,4 +3,3 @@ export type OneRMParams = {
 	rpe: number;
 	reps: number;
 };
-

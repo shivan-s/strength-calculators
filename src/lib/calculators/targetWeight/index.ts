@@ -1,3 +1,3 @@
-import { calculateTargetWeight } from "./targetWeight";
+import { calculateTargetWeight } from './targetWeight';
 
-export default calculateTargetWeight
+export default calculateTargetWeight;

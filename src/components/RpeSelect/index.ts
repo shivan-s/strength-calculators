@@ -1,1 +1,1 @@
-export { default } from './RpeSelect.svelte'
+export { default } from './RpeSelect.svelte';

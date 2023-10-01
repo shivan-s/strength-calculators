@@ -23,7 +23,7 @@ jobs:
       - name: Tests
         run: |
           npm ci
-          npm run test:unit
+          npm run test:unit -- run
 
   integration-tests:
     name: Integration Tests
@@ -42,4 +42,5 @@ jobs:
       - name: Tests
         run: |
           npm ci
+          npx playwright install
           npm run test:integration

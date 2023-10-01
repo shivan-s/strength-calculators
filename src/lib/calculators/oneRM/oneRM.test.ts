@@ -13,7 +13,7 @@ describe('oneRM', () => {
 		'$input passed into epley should calculate',
 		({ input }) => {
 			const result = epley(input);
-		expect(result).not.toBeNaN();
+			expect(result).not.toBeNaN();
 		}
 	);
 	it.each([{ input: { weight: 190, rpe: 8.5, reps: 3 } }])(

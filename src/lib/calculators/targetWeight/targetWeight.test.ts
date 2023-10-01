@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest';
+import { calculateTargetWeight } from './targetWeight';
 
-describe('sum test', () => {
-	it('adds 1 + 2 to equal 3', () => {
-		expect(1 + 2).toBe(3);
-	});
+describe('targetWeight', () => {
+  it.each([{ input: { oneRM: 190, targetReps: 3, targetRPE: 8.5 } }])(
+    'should calculate',
+    ({ input }) => {
+      const result = calculateTargetWeight(input);
+      expect(result).not.toBeNaN();
+    }
+  );
 });

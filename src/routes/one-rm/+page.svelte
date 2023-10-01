@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { calculateOneRM } from '$lib';
 	import { enhance } from '$app/forms';
-	import RpeSelect from '$lib/components/RpeSelect.svelte';
+	import { RpeSelect } from '$components';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;

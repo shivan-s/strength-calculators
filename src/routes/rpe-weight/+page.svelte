@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { calculateTargetWeight } from '$lib';
-	import RpeSelect from '$lib/components/RpeSelect.svelte';
+	import { RpeSelect } from '$components';
 
 	let oneRM = 190;
 	let targetReps = 3;

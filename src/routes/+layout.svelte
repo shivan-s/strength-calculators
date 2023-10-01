@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import Navbar from '$lib/components/navbar.svelte';
-	import Footer from '$lib/components/footer.svelte';
+	import { Navbar, Footer } from '$components';
+
 	$: pageTitle = $page.data['pageTitle'];
 </script>
 

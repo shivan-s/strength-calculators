@@ -6,7 +6,7 @@ export const actions = {
 		const oneRm = formData.get('oneRm');
 		const targetReps = formData.get('targetReps');
 		const targetRPE = formData.get('targetRPE');
-		return { success: true, oneRm, targetReps, targetRPE };
+		return { oneRm, targetReps, targetRPE };
 	}
 } satisfies Actions;
 

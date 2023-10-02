@@ -9,6 +9,9 @@
 	$: targetWeight = calculateTargetWeight({ oneRM, targetReps, targetRPE });
 </script>
 
+
+
+
 <form class="flex flex-col gap-4 items-center" method="POST">
 	<div class="form-control">
 		<label for="weight" class="label">

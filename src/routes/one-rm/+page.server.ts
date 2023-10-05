@@ -1,8 +1,8 @@
-import { fail } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
-import { message, superValidate } from 'sveltekit-superforms/server';
 import schema from './schema';
+import type { Actions, PageServerLoad } from './$types';
 import { calculateOneRM } from '$lib';
+import { fail } from '@sveltejs/kit';
+import { message, superValidate } from 'sveltekit-superforms/server';
 
 export const actions = {
   default: async ({ request }) => {

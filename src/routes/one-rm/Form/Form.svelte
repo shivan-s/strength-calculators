@@ -85,10 +85,5 @@
 </form>
 <div class="divider" />
 {#if $message}
-	<div class="flex w-full justify-center">
-		<div class="stat shadow rounded-md w-fit">
-			<div class="stat-title">One Rep Max</div>
-			<div class="stat-value">{$message.oneRM}</div>
-		</div>
-	</div>
+	<Response result={$message.oneRM} />
 {/if}

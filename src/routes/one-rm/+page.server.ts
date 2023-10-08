@@ -1,28 +1,33 @@
-import { error } from '@sveltejs/kit';
+import schema from './schema';
 import type { Actions, PageServerLoad } from './$types';
+import { calculateOneRM } from '$lib';
+import { fail } from '@sveltejs/kit';
+import { message, superValidate } from 'sveltekit-superforms/server';
 
 export const actions = {
 	default: async ({ request }) => {
-		const formData = await request.formData();
-		const weight = formData.get('weight');
-		const reps = formData.get('reps');
-		const rpe = formData.get('rpe');
+		const form = await superValidate(request, schema);
 
-		if (typeof weight !== 'string') {
-			throw error(400, 'Bad data in form');
+		if (!form.valid) {
+			return fail(400, { form });
 		}
-		if (typeof reps !== 'string') {
-			throw error(400, 'Bad data in form');
-		}
-		if (typeof rpe !== 'string') {
-			throw error(400, 'Bad data in form');
-		}
-		return { weight, reps, rpe };
+
+		const weight = form.data.weight;
+		const unit = form.data.unit;
+		const reps = form.data.reps;
+		const rpe = form.data.rpe;
+		const algorithm = form.data.algorithm;
+
+		const oneRM = calculateOneRM({ weight, reps, rpe }, algorithm);
+
+		return message(form, { oneRM: `${oneRM} ${unit}` });
 	}
 } satisfies Actions;
 
 export const load: PageServerLoad = async () => {
+	const form = await superValidate(schema);
 	return {
+		form,
 		pageTitle: 'One RM'
 	};
 };

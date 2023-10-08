@@ -2,7 +2,7 @@
   import type { SuperValidated } from 'sveltekit-superforms'
   import { superForm } from 'sveltekit-superforms/client'
   import type { SchemaType } from '../schema'
-  import RpeSelect from '$lib/components/RpeSelect.svelte';
+  import { RpeSelect } from '$components';
   import { dev } from '$app/environment'
   import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 

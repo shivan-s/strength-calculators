@@ -9,7 +9,7 @@
   export let data: SuperValidated<SchemaType>
 
   const { form, errors, message, enhance } = superForm(data);
-  let oneRM = $form.weight;
+  let oneRM = $form.oneRM;
   let unit  = $form.unit
   let targetRPE = $form.targetRPE;
   let targetReps = $form.targetReps;
@@ -49,9 +49,11 @@
 	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
 </form>
 <div class="divider" />
+{#if $message}
 <div class="flex w-full justify-center">
 	<div class="stat shadow rounded-md w-fit">
 		<div class="stat-title">Target Weight</div>
-		<div class="stat-value">{targetWeight}</div>
+		<div class="stat-value">{$message.targetWeight}</div>
 	</div>
 </div>
+{/if}

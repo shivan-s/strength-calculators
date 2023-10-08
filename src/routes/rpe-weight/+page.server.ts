@@ -5,28 +5,28 @@ import { fail } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms/server';
 
 export const actions = {
-  default: async ({ request }) => {
-    const form = await superValidate(request, schema);
+	default: async ({ request }) => {
+		const form = await superValidate(request, schema);
 
-    if (!form.valid) {
-      return fail(400, { form });
-    }
+		if (!form.valid) {
+			return fail(400, { form });
+		}
 
-    const oneRM = form.data.oneRM
-    const targetReps = form.data.targetReps
-    const targetRPE = form.data.targetRPE
-    const unit = form.data.unit
+		const oneRM = form.data.oneRM;
+		const targetReps = form.data.targetReps;
+		const targetRPE = form.data.targetRPE;
+		const unit = form.data.unit;
 
-    const rpeWeight = calculateTargetWeight({ oneRM, targetReps, targetRPE });
+		const targetWeight = calculateTargetWeight({ oneRM, targetReps, targetRPE });
 
-    return message(form, { rpeWeight: `${rpeWeight} ${unit}`});
-  }
+		return message(form, { targetWeight: `${targetWeight} ${unit}` });
+	}
 } satisfies Actions;
 
 export const load: PageServerLoad = async () => {
-  const form = await superValidate(schema)
-  return {
-    form,
-    pageTitle: 'RPE Weight'
-  };
+	const form = await superValidate(schema);
+	return {
+		form,
+		pageTitle: 'RPE Weight'
+	};
 };

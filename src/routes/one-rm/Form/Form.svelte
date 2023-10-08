@@ -14,12 +14,23 @@
 	let reps = $form.reps;
 	let rpe = $form.rpe;
 	let algorithm = $form.algorithm;
+
+    let advanced = false
 </script>
 
 {#if dev}
 	<SuperDebug data={$form} />
 {/if}
 
+
+  <div class="flex justify-end items-center">
+<label for="advanced" class="label">
+  <span class="label-text">
+    Advanced
+  </span>
+</label>
+  <input name="advanced" type="checkbox" class="toggle toggle-primary" bind:checked={advanced} />
+</div>
 <form class="flex flex-col gap-4 items-center" method="POST" use:enhance>
 	<div class="form-control">
 		<label for="weight" class="label">
@@ -48,6 +59,7 @@
 			<option value="lbs">lbs</option>
 		</select>
 
+        {#if advanced}
 		<label for="unit" class="label">
 			<span class="label-text">Algorithm</span>
 			{#if $errors.algorithm}
@@ -59,6 +71,7 @@
 			<option value="epley">Epley</option>
 			<option value="lander">Lander</option>
 		</select>
+  {/if}
 
 		<label for="reps" class="label">
 			<span class="label-text">Reps Made</span>
@@ -85,5 +98,11 @@
 </form>
 <div class="divider" />
 {#if $message}
-	<Response result={$message.oneRM} />
+<div class="flex w-full justify-center">
+	<div class="stat shadow rounded-md w-fit">
+		<div class="stat-title">One Rep Max</div>
+		<div class="stat-value">{$message.oneRM}</div>
+	</div>
+</div>
 {/if}
+

@@ -22,7 +22,6 @@
 	<SuperDebug data={$form} />
 {/if}
 
-
   <div class="flex justify-end items-center">
 <label for="advanced" class="label">
   <span class="label-text">

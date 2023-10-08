@@ -33,6 +33,18 @@
 			name="oneRM"
 			bind:value={oneRM}
 		/>
+
+		<label for="unit" class="label">
+			<span class="label-text">Unit</span>
+			{#if $errors.unit}
+				<span class="label-text-alt text-error">{$errors.unit}</span>
+			{/if}
+		</label>
+		<select class="select input-bordered" name="unit" bind:value={unit}>
+			<option value="kg">kg</option>
+			<option value="lbs">lbs</option>
+		</select>
+
 		<label for="reps" class="label">
 			<span class="label-text">Target Reps</span>
 		</label>
@@ -42,8 +54,10 @@
 			name="targetReps"
 			bind:value={targetReps}
 		/>
+
 		<label for="targetRPESelect" class="label"><span class="label-text">Target RPE</span></label>
 		<input name="targetRPE" hidden aria-hidden type="number" bind:value={targetRPE} />
+
 		<RpeSelect bind:rpe={targetRPE} name="targetRPESelect" />
 	</div>
 	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>

@@ -17,7 +17,9 @@ const schema = z.object({
 		.max(10, 'RPE must be less than 10.')
 		.default(10),
 	unit: z
-		.union([z.literal('kg'), z.literal('lbs')], { required_error: 'Unit is required' })
+		.union([z.literal('kg'), z.literal('lbs')], {
+			required_error: 'Unit is required'
+		})
 		.default('kg')
 });
 

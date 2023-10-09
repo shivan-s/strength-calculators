@@ -17,7 +17,11 @@ export const actions = {
 		const targetRPE = form.data.targetRPE;
 		const unit = form.data.unit;
 
-		const targetWeight = calculateTargetWeight({ oneRM, targetReps, targetRPE });
+		const targetWeight = calculateTargetWeight({
+			oneRM,
+			targetReps,
+			targetRPE
+		});
 
 		return message(form, { targetWeight: `${targetWeight} ${unit}` });
 	}

@@ -29,7 +29,10 @@ describe('oneRM', () => {
 		{ input: { weight: 190, rpe: 8.5, reps: 3, rmType: 'lander' } }
 	])('$input passed into calculateOneRM should calculate', ({ input }) => {
 		const { rmType, ...restInput } = input;
-		const result = calculateOneRM(restInput, rmType as 'brzyck' | 'epley' | 'lander');
+		const result = calculateOneRM(
+			restInput,
+			rmType as 'brzyck' | 'epley' | 'lander'
+		);
 		expect(result).not.toBeNaN();
 	});
 	it('calculateOneRm should error', () => {

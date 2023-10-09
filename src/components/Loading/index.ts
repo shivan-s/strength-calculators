@@ -1,1 +1,1 @@
-export { default } from 'Loading.svelte';
+export { default } from './Loading.svelte';

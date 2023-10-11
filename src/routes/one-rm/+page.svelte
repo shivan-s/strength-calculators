@@ -6,4 +6,3 @@
 </script>
 
 <Form data={data.form} />
-

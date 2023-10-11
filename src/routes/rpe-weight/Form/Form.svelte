@@ -1,36 +1,37 @@
 <script lang="ts">
-  import type { SuperValidated } from 'sveltekit-superforms'
-  import { superForm } from 'sveltekit-superforms/client'
-  import type { SchemaType } from '../schema'
-  import { RpeSelect } from '$components';
-  import { dev } from '$app/environment'
-  import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import type { SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms/client';
+	import type { SchemaType } from '../schema';
+	import { RpeSelect } from '$components';
+	import { dev } from '$app/environment';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
-  export let data: SuperValidated<SchemaType>
+	export let data: SuperValidated<SchemaType>;
 
-  const { form, errors, message, enhance } = superForm(data);
-  let oneRM = $form.oneRM;
-  let unit  = $form.unit
-  let targetRPE = $form.targetRPE;
-  let targetReps = $form.targetReps;
+	const { form, errors, message, enhance } = superForm(data);
+	let oneRM = $form.oneRM;
+	let unit = $form.unit;
+	let targetRPE = $form.targetRPE;
+	let targetReps = $form.targetReps;
 </script>
 
 {#if dev}
-  <SuperDebug data={$form} />
+	<SuperDebug data={$form} />
 {/if}
 
 <form class="flex flex-col gap-4 items-center" method="POST" use:enhance>
 	<div class="form-control">
 		<label for="oneRM" class="label">
 			<span class="label-text">One Rep Max</span>
-            {#if $errors.oneRM}
-              <span class="label-text-alt text-error">{$errors.oneRM}</span>
-            {/if}
+			{#if $errors.oneRM}
+				<span class="label-text-alt text-error">{$errors.oneRM}</span>
+			{/if}
 		</label>
 		<input
 			class="input input-bordered w-full max-w-sx"
 			type="number"
 			name="oneRM"
+			step="0.5"
 			bind:value={oneRM}
 		/>
 
@@ -64,10 +65,10 @@
 </form>
 <div class="divider" />
 {#if $message}
-<div class="flex w-full justify-center">
-	<div class="stat shadow rounded-md w-fit">
-		<div class="stat-title">Target Weight</div>
-		<div class="stat-value">{$message.targetWeight}</div>
+	<div class="flex w-full justify-center">
+		<div class="stat shadow rounded-md w-fit">
+			<div class="stat-title">Target Weight</div>
+			<div class="stat-value">{$message.targetWeight}</div>
+		</div>
 	</div>
-</div>
 {/if}

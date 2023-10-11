@@ -15,10 +15,7 @@ export function lander(params: OneRMParams): number {
 	return (100 * weight) / (101.3 - 2.67123 * (reps + (10 - rpe)));
 }
 
-export function calculateOneRM(
-	params: OneRMParams,
-	rmType: 'brzyck' | 'epley' | 'lander'
-): number {
+export function calculateOneRM(params: OneRMParams, rmType: 'brzyck' | 'epley' | 'lander'): number {
 	let oneRM: number;
 	switch (rmType) {
 		case 'brzyck':

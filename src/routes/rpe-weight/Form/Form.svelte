@@ -8,7 +8,7 @@
 
 	export let data: SuperValidated<SchemaType>;
 
-	const { form, errors, message, enhance } = superForm(data);
+	const { form, errors, message, enhance, constraints } = superForm(data);
 	let oneRM = $form.oneRM;
 	let unit = $form.unit;
 	let targetRPE = $form.targetRPE;
@@ -33,6 +33,7 @@
 			name="oneRM"
 			step="0.5"
 			bind:value={oneRM}
+			{...$constraints.oneRM}
 		/>
 
 		<label for="unit" class="label">

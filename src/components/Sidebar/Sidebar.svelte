@@ -12,7 +12,7 @@
 			<li>
 				<a class:active={$page.url.pathname === href} {href}
 					><span>
-						<Icon {icon} />
+						<Icon class="text-2xl" {icon} />
 					</span>
 					{label}</a
 				>

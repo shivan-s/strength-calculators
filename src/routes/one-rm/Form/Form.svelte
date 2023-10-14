@@ -2,9 +2,12 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { SchemaType } from '../schema';
-	import { RpeSelect } from '$components';
+	import RpeSelect from '$components/rpeSelect/RpeSelect.svelte';
 	import { dev } from '$app/environment';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import NumericInput from '$components/numericInput/NumericInput.svelte';
+	import Select from '$components/select/Select.svelte';
+	import Button from '$components/button/Button.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
@@ -22,83 +25,70 @@
 	<SuperDebug data={$form} />
 {/if}
 
-<div class="flex justify-end items-center">
+<div class="flex items-center justify-end">
 	<label for="advanced" class="label">
 		<span class="label-text"> Advanced </span>
 	</label>
 	<input name="advanced" type="checkbox" class="toggle toggle-primary" bind:checked={advanced} />
 </div>
-<form class="flex flex-col gap-4 items-center" method="POST" use:enhance>
+
+<form class="flex flex-col items-center gap-4" method="POST" use:enhance>
 	<div class="form-control">
-		<label for="weight" class="label">
-			<span class="label-text">Weight Used</span>
-			{#if $errors.weight}
-				<span class="label-text-alt text-error">{$errors.weight}</span>
-			{/if}
-		</label>
-		<input
-			class="input input-bordered w-full max-w-xs"
-			class:input-error={$errors.weight}
-			aria-invalid={$errors.weight ? 'true' : undefined}
+		<NumericInput
 			type="number"
 			step="0.5"
 			name="weight"
 			bind:value={weight}
-			{...$constraints.weight}
+			label="Weight Used"
+			errors={$errors.weight}
+			constraints={$constraints.weight}
 		/>
-
-		<label for="unit" class="label">
-			<span class="label-text">Unit</span>
-			{#if $errors.unit}
-				<span class="label-text-alt text-error">{$errors.unit}</span>
-			{/if}
-		</label>
-		<select class="select input-bordered" name="unit" bind:value={unit}>
+		<Select
+			name="unit"
+			bind:value={unit}
+			label="Unit"
+			errors={$errors.unit}
+			constraints={$constraints.unit}
+		>
 			<option value="kg">kg</option>
 			<option value="lbs">lbs</option>
-		</select>
-
+		</Select>
 		{#if advanced}
-			<label for="unit" class="label">
-				<span class="label-text">Algorithm</span>
-				{#if $errors.algorithm}
-					<span class="label-text-alt text-error">{$errors.algorithm}</span>
-				{/if}
-			</label>
-			<select class="select input-bordered" name="algorithm" bind:value={algorithm}>
+			<Select
+				name="algorithm"
+				bind:value={algorithm}
+				label="Algorithm"
+				errors={$errors.algorithm}
+				constraints={$constraints.algorithm}
+			>
 				<option value="brzyck">Brzyck</option>
 				<option value="epley">Epley</option>
 				<option value="lander">Lander</option>
-			</select>
+			</Select>
 		{/if}
-
-		<label for="reps" class="label">
-			<span class="label-text">Reps Made</span>
-			{#if $errors.reps}
-				<span class="label-text-alt text-error">{$errors.reps}</span>
-			{/if}
-		</label>
-		<input
-			class="input input-bordered w-full max-w-xs"
+		<NumericInput
 			type="number"
+			step="1"
 			name="reps"
 			bind:value={reps}
+			label="Reps Made"
+			errors={$errors.weight}
+			constraints={$constraints.weight}
 		/>
-
-		<label for="rpeSelect" class="label">
-			<span class="label-text">RPE</span>
-			{#if $errors.reps}
-				<span class="label-text-alt text-error">{$errors.reps}</span>
-			{/if}
-		</label>
-		<RpeSelect bind:rpe name="rpe" />
+		<RpeSelect
+			bind:rpe
+			name="rpe"
+			label="RPE"
+			errors={$errors.rpe}
+			constraints={$constraints.rpe}
+		/>
 	</div>
-	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
+	<Button>Submit</Button>
 </form>
 <div class="divider" />
 {#if $message}
 	<div class="flex w-full justify-center">
-		<div class="stat shadow rounded-md w-fit">
+		<div class="stat w-fit rounded-md shadow">
 			<div class="stat-title">One Rep Max</div>
 			<div class="stat-value">{$message.oneRM}</div>
 		</div>

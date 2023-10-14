@@ -6,12 +6,12 @@
 		{
 			label: '1-RM Calculator',
 			href: '/one-rm',
-			icon: 'mdi:weights'
+			icon: 'icon-park-outline:one'
 		},
 		{
 			label: 'RPE Weight Predictor',
 			href: '/rpe-weight',
-			icon: 'mdi:weights'
+			icon: 'la:grin-beam-sweat-solid'
 		}
 	];
 	$: pageTitle = $page.data['pageTitle'];

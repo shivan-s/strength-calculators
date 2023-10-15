@@ -31,7 +31,6 @@
 	</label>
 	<input name="advanced" type="checkbox" class="toggle toggle-primary" bind:checked={advanced} />
 </div>
-
 <form class="flex flex-col items-center gap-4" method="POST" use:enhance>
 	<div class="form-control">
 		<NumericInput

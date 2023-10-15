@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LabelWrapper from '$components/labelWrapper/labelWrapper.svelte';
+	import LabelWrapper from '$components/labelWrapper/LabelWrapper.svelte';
 	import type { InputConstraint } from 'sveltekit-superforms';
 
 	export let value: string | number;
@@ -8,8 +8,9 @@
 	export let constraints: InputConstraint | undefined;
 </script>
 
-<LabelWrapper {label} {error}>
+<LabelWrapper {label} {errors}>
 	<input
+		type="number"
 		class="input input-bordered w-full max-w-xs"
 		class:input-error={errors}
 		aria-invalid={errors ? 'true' : undefined}

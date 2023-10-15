@@ -2,9 +2,12 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { SchemaType } from '../schema';
-	import { RpeSelect } from '$components';
+	import RpeSelect from '$components/rpeSelect/RpeSelect.svelte';
 	import { dev } from '$app/environment';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import Button from '$components/button/Button.svelte';
+	import NumericInput from '$components/numericInput/NumericInput.svelte';
+	import UnitSelect from '$components/unitSelect/UnitSelect.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
@@ -19,55 +22,39 @@
 	<SuperDebug data={$form} />
 {/if}
 
-<form class="flex flex-col gap-4 items-center" method="POST" use:enhance>
+<form class="flex flex-col items-center gap-4" method="POST" use:enhance>
 	<div class="form-control">
-		<label for="oneRM" class="label">
-			<span class="label-text">One Rep Max</span>
-			{#if $errors.oneRM}
-				<span class="label-text-alt text-error">{$errors.oneRM}</span>
-			{/if}
-		</label>
-		<input
-			class="input input-bordered w-full max-w-sx"
-			type="number"
-			name="oneRM"
+		<NumericInput
 			step="0.5"
+			name="oneRM"
 			bind:value={oneRM}
-			{...$constraints.oneRM}
+			label="One Rep Max"
+			errors={$errors.oneRM}
+			constraints={$constraints.oneRM}
 		/>
-
-		<label for="unit" class="label">
-			<span class="label-text">Unit</span>
-			{#if $errors.unit}
-				<span class="label-text-alt text-error">{$errors.unit}</span>
-			{/if}
-		</label>
-		<select class="select input-bordered" name="unit" bind:value={unit}>
-			<option value="kg">kg</option>
-			<option value="lbs">lbs</option>
-		</select>
-
-		<label for="reps" class="label">
-			<span class="label-text">Target Reps</span>
-		</label>
-		<input
-			class="input input-bordered w-full max-w-xs"
-			type="number"
+		<UnitSelect {unit} errors={$errors.unit} constraints={$constraints.unit} />
+		<NumericInput
+			step="1"
 			name="targetReps"
 			bind:value={targetReps}
+			label="Target Reps"
+			errors={$errors.targetReps}
+			constraints={$constraints.targetReps}
 		/>
-
-		<label for="targetRPESelect" class="label"><span class="label-text">Target RPE</span></label>
-		<input name="targetRPE" hidden aria-hidden type="number" bind:value={targetRPE} />
-
-		<RpeSelect bind:rpe={targetRPE} name="targetRPESelect" />
+		<RpeSelect
+			bind:rpe={targetRPE}
+			name="targetRPE"
+			label="Target RPE"
+			errors={$errors.targetRPE}
+			constraints={$constraints.targetRPE}
+		/>
 	</div>
-	<button class="btn btn-primary w-full max-w-xs" type="submit">Submit</button>
+	<Button>Submit</Button>
 </form>
 <div class="divider" />
 {#if $message}
 	<div class="flex w-full justify-center">
-		<div class="stat shadow rounded-md w-fit">
+		<div class="stat w-fit rounded-md shadow">
 			<div class="stat-title">Target Weight</div>
 			<div class="stat-value">{$message.targetWeight}</div>
 		</div>

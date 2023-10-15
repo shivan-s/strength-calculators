@@ -8,6 +8,8 @@
 	import NumericInput from '$components/numericInput/NumericInput.svelte';
 	import Select from '$components/select/Select.svelte';
 	import Button from '$components/button/Button.svelte';
+	import Result from '$components/result/Result.svelte';
+	import Toggle from '$components/toggle/Toggle.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
@@ -26,10 +28,7 @@
 {/if}
 
 <div class="flex items-center justify-end">
-	<label for="advanced" class="label">
-		<span class="label-text"> Advanced </span>
-	</label>
-	<input name="advanced" type="checkbox" class="toggle toggle-primary" bind:checked={advanced} />
+	<Toggle bind:checked={advanced} label="Advanced" />
 </div>
 <form class="flex flex-col items-center gap-4" method="POST" use:enhance>
 	<div class="form-control">
@@ -84,12 +83,9 @@
 	</div>
 	<Button>Submit</Button>
 </form>
+
 <div class="divider" />
+
 {#if $message}
-	<div class="flex w-full justify-center">
-		<div class="stat w-fit rounded-md shadow">
-			<div class="stat-title">One Rep Max</div>
-			<div class="stat-value">{$message.oneRM}</div>
-		</div>
-	</div>
+	<Result title="One Rep Max" value={$message.oneRM} />
 {/if}

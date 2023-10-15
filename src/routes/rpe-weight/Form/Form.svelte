@@ -8,6 +8,7 @@
 	import Button from '$components/button/Button.svelte';
 	import NumericInput from '$components/numericInput/NumericInput.svelte';
 	import UnitSelect from '$components/unitSelect/UnitSelect.svelte';
+	import Result from '$components/result/Result.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
@@ -51,12 +52,9 @@
 	</div>
 	<Button>Submit</Button>
 </form>
+
 <div class="divider" />
+
 {#if $message}
-	<div class="flex w-full justify-center">
-		<div class="stat w-fit rounded-md shadow">
-			<div class="stat-title">Target Weight</div>
-			<div class="stat-value">{$message.targetWeight}</div>
-		</div>
-	</div>
+	<Result title="Target Weight" value={$message.targetWeight} />
 {/if}

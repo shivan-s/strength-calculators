@@ -26,7 +26,7 @@
 <div class="drawer lg:drawer-open">
 	<input id="my-drawer" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex min-h-screen flex-col items-center justify-center">
-			<Navbar />
+		<Navbar />
 		<main class="container prose mx-auto flex flex-grow flex-col gap-4 py-6">
 			{#if pageTitle}
 				<h1 class="text-center">{pageTitle}</h1>

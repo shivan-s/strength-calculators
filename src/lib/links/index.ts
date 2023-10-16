@@ -1,3 +1,3 @@
-import { getLinks } from "./getLinks";
+import { getLinks } from './getLinks';
 
-export { getLinks}
+export { getLinks };

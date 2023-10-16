@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LabelWrapper from '$components/labelWrapper/labelWrapper.svelte';
+	import LabelWrapper from '$components/labelWrapper/LabelWrapper.svelte';
 	import type { InputConstraint } from 'sveltekit-superforms';
 
 	export let value: string | number;

@@ -7,7 +7,7 @@
 	import type { LayoutData } from './$types';
 
 	$: pageTitle = $page.data['pageTitle'];
-    export let data: LayoutData
+	export let data: LayoutData;
 </script>
 
 <svelte:head>

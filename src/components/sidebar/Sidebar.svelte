@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
+	import type { Link } from '$lib/links/getLinks';
 
-	export let links: { label: string; href: string; icon: string }[] = [];
+	export let links: Link[] = [];
 </script>
 
 <div class="drawer-side">

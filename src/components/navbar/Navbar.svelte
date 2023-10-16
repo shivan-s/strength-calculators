@@ -6,7 +6,7 @@
 <div class="navbar bg-base-100 shadow-md">
 	<div class="navbar-start">
 		<label for="my-drawer" class="btn drawer-button lg:hidden">
-			<Icon class="2xl" icon="mdi:barbell" />
+			<Icon class="text-2xl" icon="mdi:barbell" />
 		</label>
 	</div>
 	<div class="navbar-center">

@@ -4,19 +4,10 @@
 	import Navbar from '$components/navbar/Navbar.svelte';
 	import Footer from '$components/footer/Footer.svelte';
 	import Sidebar from '$components/sidebar/Sidebar.svelte';
-	const links: { label: string; href: string; icon: string }[] = [
-		{
-			label: '1-RM Calculator',
-			href: '/one-rm',
-			icon: 'icon-park-outline:one'
-		},
-		{
-			label: 'RPE Weight Predictor',
-			href: '/rpe-weight',
-			icon: 'la:grin-beam-sweat-solid'
-		}
-	];
+	import type { LayoutData } from './$types';
+
 	$: pageTitle = $page.data['pageTitle'];
+    export let data: LayoutData
 </script>
 
 <svelte:head>
@@ -35,5 +26,5 @@
 		</main>
 		<Footer />
 	</div>
-	<Sidebar {links} />
+	<Sidebar links={data.links} />
 </div>

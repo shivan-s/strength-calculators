@@ -10,12 +10,15 @@
 	import Button from '$components/button/Button.svelte';
 	import Result from '$components/result/Result.svelte';
 	import Toggle from '$components/toggle/Toggle.svelte';
+	import UnitSelect from '$components/unitSelect/UnitSelect.svelte';
+	import NearestSelect from '$components/nearestSelect/NearestSelect.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
 	const { form, errors, message, enhance, constraints } = superForm(data);
 	let weight = $form.weight;
 	let unit = $form.unit;
+	let nearest = $form.nearest;
 	let reps = $form.reps;
 	let rpe = $form.rpe;
 	let algorithm = $form.algorithm;
@@ -41,16 +44,13 @@
 			errors={$errors.weight}
 			constraints={$constraints.weight}
 		/>
-		<Select
-			name="unit"
-			bind:value={unit}
-			label="Unit"
-			errors={$errors.unit}
-			constraints={$constraints.unit}
-		>
-			<option value="kg">kg</option>
-			<option value="lbs">lbs</option>
-		</Select>
+		<UnitSelect bind:unit errors={$errors.unit} constraints={$constraints.unit} />
+		<NearestSelect
+			bind:unit
+			{nearest}
+			errors={$errors.nearest}
+			constraints={$constraints.nearest}
+		/>
 		{#if advanced}
 			<Select
 				name="algorithm"
@@ -87,5 +87,9 @@
 <div class="divider" />
 
 {#if $message}
-	<Result title="One Rep Max" value={$message.oneRM} />
+	<Result
+		title="One Rep Max"
+		value={`${$message.roundedOneRM} ${$message.unit}`}
+		description={`(${$message.rawOneRM} ${$message.unit})`}
+	/>
 {/if}

@@ -35,8 +35,13 @@
 			errors={$errors.oneRM}
 			constraints={$constraints.oneRM}
 		/>
-		<NearestSelect {unit} {nearest} errors={$errors.nearest} constraints={$constraints.nearest} />
-		<UnitSelect {unit} errors={$errors.unit} constraints={$constraints.unit} />
+		<NearestSelect
+			bind:unit
+			{nearest}
+			errors={$errors.nearest}
+			constraints={$constraints.nearest}
+		/>
+		<UnitSelect bind:unit errors={$errors.unit} constraints={$constraints.unit} />
 		<NumericInput
 			step="1"
 			name="targetReps"

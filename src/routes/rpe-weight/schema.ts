@@ -22,10 +22,10 @@ const schema = z.object({
 		})
 		.default('kg'),
 	nearest: z
-		.union([z.literal(5), z.literal(2.5), z.literal(1)], {
+		.union([z.literal('5'), z.literal('2.5'), z.literal('1')], {
 			required_error: 'Nearest is required.'
 		})
-		.default(1)
+		.default('1')
 });
 
 export default schema;

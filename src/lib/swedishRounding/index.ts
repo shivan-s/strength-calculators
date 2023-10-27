@@ -1,3 +1,3 @@
-import { swedishRounding } from "./swedishRounding";
+import { swedishRounding } from './swedishRounding';
 
-export swedishRounding
+export { swedishRounding };

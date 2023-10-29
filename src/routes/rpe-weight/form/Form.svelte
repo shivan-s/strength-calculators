@@ -9,11 +9,13 @@
 	import NumericInput from '$components/numericInput/NumericInput.svelte';
 	import UnitSelect from '$components/unitSelect/UnitSelect.svelte';
 	import Result from '$components/result/Result.svelte';
+	import NearestSelect from '$components/nearestSelect/NearestSelect.svelte';
 
 	export let data: SuperValidated<SchemaType>;
 
 	const { form, errors, message, enhance, constraints } = superForm(data);
 	let oneRM = $form.oneRM;
+	let nearest = $form.nearest;
 	let unit = $form.unit;
 	let targetRPE = $form.targetRPE;
 	let targetReps = $form.targetReps;
@@ -33,7 +35,13 @@
 			errors={$errors.oneRM}
 			constraints={$constraints.oneRM}
 		/>
-		<UnitSelect {unit} errors={$errors.unit} constraints={$constraints.unit} />
+		<NearestSelect
+			bind:unit
+			{nearest}
+			errors={$errors.nearest}
+			constraints={$constraints.nearest}
+		/>
+		<UnitSelect bind:unit errors={$errors.unit} constraints={$constraints.unit} />
 		<NumericInput
 			step="1"
 			name="targetReps"
@@ -56,5 +64,9 @@
 <div class="divider" />
 
 {#if $message}
-	<Result title="Target Weight" value={$message.targetWeight} />
+	<Result
+		title="Target Weight"
+		value={`${$message.roundedTargetWeight} ${$message.unit}`}
+		description={`(${$message.rawTargetWeight} ${$message.unit})`}
+	/>
 {/if}

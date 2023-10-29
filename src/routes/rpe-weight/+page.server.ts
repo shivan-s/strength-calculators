@@ -3,6 +3,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { calculateTargetWeight } from '$lib';
 import { fail } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms/server';
+import { swedishRounding } from '$lib/swedishRounding';
 
 export const actions = {
 	default: async ({ request }) => {
@@ -16,14 +17,16 @@ export const actions = {
 		const targetReps = form.data.targetReps;
 		const targetRPE = form.data.targetRPE;
 		const unit = form.data.unit;
+		const nearest = form.data.nearest;
 
-		const targetWeight = calculateTargetWeight({
+		const rawTargetWeight = calculateTargetWeight({
 			oneRM,
 			targetReps,
 			targetRPE
 		});
+		const roundedTargetWeight = swedishRounding(rawTargetWeight, parseInt(nearest));
 
-		return message(form, { targetWeight: `${targetWeight} ${unit}` });
+		return message(form, { roundedTargetWeight, rawTargetWeight, unit });
 	}
 } satisfies Actions;
 

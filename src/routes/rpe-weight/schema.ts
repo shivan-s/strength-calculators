@@ -18,9 +18,14 @@ const schema = z.object({
 		.default(10),
 	unit: z
 		.union([z.literal('kg'), z.literal('lbs')], {
-			required_error: 'Unit is required'
+			required_error: 'Unit is required.'
 		})
-		.default('kg')
+		.default('kg'),
+	nearest: z
+		.union([z.literal('5'), z.literal('2.5'), z.literal('1')], {
+			required_error: 'Nearest is required.'
+		})
+		.default('1')
 });
 
 export default schema;
